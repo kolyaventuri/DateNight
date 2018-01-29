@@ -1,7 +1,4 @@
-require 'minitest'
-require 'minitest/autorun'
-require 'minitest/pride'
-
+require_relative 'test_helper'
 require './lib/BinarySearchTree.rb'
 
 class BinarySearchTreeClassTest < Minitest::Test
