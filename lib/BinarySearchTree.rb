@@ -1,13 +1,10 @@
 require './lib/Node'
 require 'pry';
 class BinarySearchTree
-
-  attr_reader :height
-
+  
   def initialize
     @root = nil
     @num_nodes = 0
-    @height = 0
   end
 
   def insert(key, value, current_node=@root, depth=0)
