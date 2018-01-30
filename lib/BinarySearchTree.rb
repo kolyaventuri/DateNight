@@ -1,16 +1,14 @@
 require './lib/Node'
 require 'pry';
 class BinarySearchTree
-  
+
   def initialize
     @root = nil
-    @num_nodes = 0
   end
 
   def insert(key, value, current_node=@root, depth=0)
     if(@root.nil?) then
       @root = Node.new(key,value)
-      @num_nodes = 1
       return 0
     end
     if(key < current_node.key)
@@ -25,7 +23,6 @@ class BinarySearchTree
       current_node.right = Node.new(key, value)
     end
 
-    @num_nodes += 1
     depth + 1
   end
 
@@ -125,7 +122,7 @@ class BinarySearchTree
       count = count_below(node)
       node_health.push(count)
 
-      percentage = (count / @num_nodes.to_f) * 100
+      percentage = (count / count_below(@root).to_f) * 100
       node_health.push(percentage.to_i)
 
       node_health_list.push(node_health)
