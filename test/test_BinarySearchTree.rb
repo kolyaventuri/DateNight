@@ -75,7 +75,7 @@ class BinarySearchTreeClassTest < Minitest::Test
   end
 
   def test_search_tree_deletes_nodes
-
+    skip
     assert_nil @tree.delete(61)
     assert_nil @tree.delete(16)
 
@@ -84,12 +84,11 @@ class BinarySearchTreeClassTest < Minitest::Test
   end
 
   def test_search_tree_sorts_nodes
-    skip
     assert_equal @sorted_array, @tree.sort
   end
 
   def test_search_tree_loads_from_file
-    skip
+
     new_tree = BinarySearchTree.new
     assert_equal 99, new_tree.load('./test/movies.txt')
   end

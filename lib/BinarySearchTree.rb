@@ -107,6 +107,25 @@ class BinarySearchTree
     leaf_count
   end
 
+  def load(file_name)
+    lines = []
+    File.open(file_name, 'r') do |file|
+      lines = file.read.split("\n")
+    end
+
+    tracker = []
+
+    lines.each do |line|
+      values = line.split(', ')
+      if(!tracker.include?(values[0]))
+        tracker.push(values[0])
+        insert(values[0].to_i, values[1].strip)
+      end
+
+    end
+    tracker.length
+  end
+
   def get_nodes_at_depth(target_depth, current_node=@root, current_depth=0)
     node_list = []
     if(current_node.nil?)
