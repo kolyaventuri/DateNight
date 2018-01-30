@@ -2,8 +2,7 @@ require 'pry';
 
 class Node
   attr_accessor :left,
-                :right,
-                :depth
+                :right
 
   attr_reader :key,
               :value
