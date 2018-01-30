@@ -30,4 +30,10 @@ class NodeTest < Minitest::Test
     assert_equal "Cat", @node.left.value
     assert_equal "Dog", @node.right.value
   end
+
+  def test_node_creates_hash
+    expected_hash = Hash.new
+    expected_hash["Abc"] = 1
+    assert_equal expected_hash, @node.to_hash
+  end
 end

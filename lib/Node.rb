@@ -16,4 +16,10 @@ class Node
     @right = nil
   end
 
+  def to_hash
+    node_hash = Hash.new
+    node_hash[@value] = @key
+    node_hash
+  end
+
 end

@@ -26,4 +26,54 @@ class BinarySearchTree
     end
   end
 
+  def include?(key)
+    search_result = find_node_by_key(key)
+    !search_result[:node].nil?
+  end
+
+  def depth_of?(key)
+    search_result = find_node_by_key(key)
+    search_result[:depth]
+  end
+
+  def min(current_node=@root)
+    if(current_node.nil?)
+      nil
+    else
+      if(current_node.left.nil?)
+        current_node.to_hash
+      else
+        min(current_node.left)
+      end
+    end
+  end
+
+  def max(current_node=@root)
+    if(current_node.nil?)
+      nil
+    else
+      if(current_node.right.nil?)
+        current_node.to_hash
+      else
+        min(current_node.right)
+      end
+    end
+  end
+
+  def find_node_by_key(key, current_node=@root, depth=0)
+    if(current_node.nil?)
+      return {node: nil, depth: 0}
+    end
+
+    if(current_node.key == key)
+      {node: current_node, depth: depth}
+    else
+      if(key < current_node.key)
+        return find_node_by_key(key, current_node.left, depth + 1)
+      else
+        return find_node_by_key(key, current_node.right, depth + 1)
+      end
+    end
+  end
+
 end
