@@ -56,7 +56,7 @@ class BinarySearchTreeClassTest < Minitest::Test
 
   def test_search_tree_gets_nodes_at_depth
     nodes = @large_tree.get_nodes_at_depth(2)
-    
+
     assert_instance_of Array, nodes
     assert_equal 36, nodes[0].key
     assert_equal 93, nodes[1].key

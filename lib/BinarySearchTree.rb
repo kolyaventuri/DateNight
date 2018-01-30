@@ -67,8 +67,28 @@ class BinarySearchTree
   end
 
   def get_nodes_at_depth(target_depth, current_node=@root, current_depth=0)
-    
+    node_list = []
+    if(current_node.nil?)
+      node_list
+    else
+      if(current_depth == target_depth)
+        node_list.push(current_node)
+        node_list
+      else
+        if(!current_node.left.nil?)
+          get_nodes_at_depth(target_depth, current_node.left, current_depth + 1).each do | node |
+            node_list.push(node)
+          end
+        end
+        if(!current_node.right.nil?)
+          get_nodes_at_depth(target_depth, current_node.right, current_depth + 1).each do | node |
+            node_list.push(node)
+          end
+        end
+        node_list
+      end
 
+    end
   end
 
   def find_node_by_key(key, current_node=@root, depth=0)
