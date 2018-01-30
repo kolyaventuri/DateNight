@@ -4,9 +4,11 @@ class BinarySearchTree
 
   def initialize
     @root = nil
+    @num_nodes = 0
   end
 
   def insert(key, value, current_node=@root, depth=0)
+    @num_nodes += 1
     if(@root.nil?) then
       @root = Node.new(key,value)
       return 0
@@ -60,6 +62,15 @@ class BinarySearchTree
     end
   end
 
+  def health(depth)
+
+  end
+
+  def get_nodes_at_depth(target_depth, current_node=@root, current_depth=0)
+    
+
+  end
+
   def find_node_by_key(key, current_node=@root, depth=0)
     if(current_node.nil?)
       return {node: nil, depth: 0}
@@ -73,6 +84,16 @@ class BinarySearchTree
       else
         return find_node_by_key(key, current_node.right, depth + 1)
       end
+    end
+  end
+
+  def count_below(current_node)
+    result = 1
+    if(current_node.nil?)
+      0
+    else
+      result += count_below(current_node.left)
+      result += count_below(current_node.right)
     end
   end
 

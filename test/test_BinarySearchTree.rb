@@ -11,6 +11,15 @@ class BinarySearchTreeClassTest < Minitest::Test
     @tree.insert(50, "Hannibal Buress: Animal Furnace")
 
     @sorted_array = [{"Johnny English"=>16}, {"Hannibal Buress: Animal Furnace"=>50}, {"Bill & Ted's Excellent Adventure"=>61}, {"Sharknado 3"=>92}]
+
+    @large_tree = BinarySearchTree.new
+    @large_tree.insert(98, "Animals United")
+    @large_tree.insert(58, "Armageddon")
+    @large_tree.insert(36, "Bill & Ted's Bogus Journey")
+    @large_tree.insert(93, "Bill & Ted's Excellent Adventure")
+    @large_tree.insert(86, "Charlie's Angels")
+    @large_tree.insert(38, "Charlie's Country")
+    @large_tree.insert(69, "Collateral Damage")
   end
 
   def test_search_tree_object_exists
@@ -40,20 +49,25 @@ class BinarySearchTreeClassTest < Minitest::Test
     assert_equal @sorted_array.first, @tree.min # @sorted_array.first is where {"Johnny English" => 16} lives
   end
 
+  def test_search_tree_counts_below
+    node = @large_tree.find_node_by_key(93)[:node]
+    assert_equal 3, @large_tree.count_below(node)
+  end
+
+  def test_search_tree_gets_nodes_at_depth
+    nodes = @large_tree.get_nodes_at_depth(2)
+    
+    assert_instance_of Array, nodes
+    assert_equal 36, nodes[0].key
+    assert_equal 93, nodes[1].key
+  end
+
   def test_search_tree_returns_node_health
     skip
-    tree = BinarySearchTree.new
-    tree.insert(98, "Animals United")
-    tree.insert(58, "Armageddon")
-    tree.insert(36, "Bill & Ted's Bogus Journey")
-    tree.insert(93, "Bill & Ted's Excellent Adventure")
-    tree.insert(86, "Charlie's Angels")
-    tree.insert(38, "Charlie's Country")
-    tree.insert(69, "Collateral Damage")
 
-    assert_equal [[98, 7, 100]], tree.health(0)
-    assert_equal [[58, 6, 85]], tree.health(1)
-    assert_equal [[36, 2, 28], [93, 3, 42]], tree.health(2)
+    assert_equal [[98, 7, 100]], @large_tree.health(0)
+    assert_equal [[58, 6, 85]], @large_tree.health(1)
+    assert_equal [[36, 2, 28], [93, 3, 42]], @large_tree.health(2)
   end
 
   def test_search_tree_leaves_depth
