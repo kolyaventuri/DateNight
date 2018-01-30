@@ -76,8 +76,8 @@ class BinarySearchTreeClassTest < Minitest::Test
 
   def test_search_tree_deletes_nodes
     skip
-    assert_nil @tree.delete(61)
-    assert_nil @tree.delete(16)
+    assert_equal 61, @tree.delete(61)
+    assert_equal 16, @tree.delete(16)
 
     assert_equal false, @tree.include?(61)
     assert_equal false, @tree.include?(16)

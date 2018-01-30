@@ -11,11 +11,9 @@ class BinarySearchTree
   end
 
   def insert(key, value, current_node=@root, depth=0)
-
     if(@root.nil?) then
       @root = Node.new(key,value)
       @num_nodes = 1
-      @height = 1
       return 0
     end
     if(key < current_node.key)
@@ -31,11 +29,58 @@ class BinarySearchTree
     end
 
     @num_nodes += 1
-    depth += 1
-    if(depth+1 > @height)
-      @height = depth+1
+    depth + 1
+  end
+
+  def height(current_node=@root)
+    tree_height = 0
+    if(current_node.nil?)
+      0
+    else
+      tree_height = 1
+      left = height(current_node.left)
+      right = height(current_node.right)
+
+      if(left > right)
+        tree_height += left
+      else
+        tree_height += right
+      end
     end
-    depth
+
+  end
+
+  def delete(key, current_node=@root)
+    if(current_node.nil?)
+      nil
+    else
+      if(current_node.key == key)
+        if(current_node.right)
+          temp_node = current_node.left
+          current_node = current_node.right
+
+          pointer_node = current_node
+          until(pointer_node.left.nil?)
+            pointer_node = pointer_node.left
+          end
+          pointer_node.left = temp_node
+          current_node = pointer_node
+          #binding.pry
+          key
+        else
+          temp_node = current_node.left
+          current_node = temp_node
+          #binding.pry
+          key
+        end
+      else
+        if(key < current_node.key)
+          delete(key, current_node.left)
+        else
+          delete(key, current_node.right)
+        end
+      end
+    end
   end
 
   def include?(key)
