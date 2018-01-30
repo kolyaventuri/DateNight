@@ -8,9 +8,10 @@ class BinarySearchTree
   end
 
   def insert(key, value, current_node=@root, depth=0)
-    @num_nodes += 1
+
     if(@root.nil?) then
       @root = Node.new(key,value)
+      @num_nodes = 1
       return 0
     end
     if(key < current_node.key)
@@ -18,12 +19,14 @@ class BinarySearchTree
         return insert(key, value, current_node.left, depth + 1)
       end
       current_node.left = Node.new(key, value)
+      @num_nodes += 1
       depth + 1
     else
       if(!current_node.right.nil?) then
         return insert(key, value, current_node.right, depth + 1)
       end
       current_node.right = Node.new(key, value)
+      @num_nodes += 1
       depth + 1
     end
   end
@@ -63,7 +66,23 @@ class BinarySearchTree
   end
 
   def health(depth)
+    node_list = get_nodes_at_depth(depth)
+    node_health_list = []
 
+    node_list.each do |node|
+      node_health = []
+      node_health.push(node.key)
+
+      count = count_below(node)
+      node_health.push(count)
+
+      percentage = (count / @num_nodes.to_f) * 100
+      node_health.push(percentage.to_i)
+
+      node_health_list.push(node_health)
+    end
+
+    node_health_list
   end
 
   def get_nodes_at_depth(target_depth, current_node=@root, current_depth=0)
@@ -87,7 +106,6 @@ class BinarySearchTree
         end
         node_list
       end
-
     end
   end
 

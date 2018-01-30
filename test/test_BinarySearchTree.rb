@@ -63,7 +63,6 @@ class BinarySearchTreeClassTest < Minitest::Test
   end
 
   def test_search_tree_returns_node_health
-    skip
 
     assert_equal [[98, 7, 100]], @large_tree.health(0)
     assert_equal [[58, 6, 85]], @large_tree.health(1)
