@@ -20,21 +20,25 @@ class BinarySearchTreeClassTest < Minitest::Test
   end
 
   def test_search_tree_checks_inclusivity
+    skip
     assert_equal true, @tree.include?(16)
     assert_equal false, @tree.include?(7)
   end
 
   def test_search_tree_returns_node_depth
+    skip
     assert_equal 1, @tree.depth_of?(92)
     assert_equal 2, @tree.depth_of?(50)
   end
 
   def test_search_tree_finds_max_min
+    skip
     assert_equal @sorted_array.last, @tree.max # @sorted_array.last is where {"Sharknado 3" => 92} lives
     assert_equal @sorted_array.first, @tree.min # @sorted_array.first is where {"Johnny English" => 16} lives
   end
 
   def test_search_tree_returns_node_health
+    skip
     tree = BinarySearchTree.new
     tree.insert(98, "Animals United")
     tree.insert(58, "Armageddon")
@@ -50,11 +54,13 @@ class BinarySearchTreeClassTest < Minitest::Test
   end
 
   def test_search_tree_leaves_depth
+    skip
     assert_equal 2, @tree.leaves
     asert_equal 3, @tree.height
   end
 
   def test_search_tree_deletes_nodes
+    skip
     assert_nil @tree.delete(61)
     assert_nil @tree.delete(16)
 
@@ -63,10 +69,12 @@ class BinarySearchTreeClassTest < Minitest::Test
   end
 
   def test_search_tree_sorts_nodes
+    skip
     assert_equal @sorted_array, @tree.sort
   end
 
   def test_search_tree_loads_from_file
+    skip
     new_tree = BinarySearchTree.new
     assert_equal 99, new_tree.load('./test/movies.txt')
   end

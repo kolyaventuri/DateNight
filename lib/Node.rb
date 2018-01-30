@@ -1,6 +1,9 @@
+require 'pry';
+
 class Node
   attr_accessor :left,
-                :right
+                :right,
+                :depth
 
   attr_reader :key,
               :value
