@@ -2,9 +2,12 @@ require './lib/Node'
 require 'pry';
 class BinarySearchTree
 
+  attr_reader :height
+
   def initialize
     @root = nil
     @num_nodes = 0
+    @height = 0
   end
 
   def insert(key, value, current_node=@root, depth=0)
@@ -12,6 +15,7 @@ class BinarySearchTree
     if(@root.nil?) then
       @root = Node.new(key,value)
       @num_nodes = 1
+      @height = 1
       return 0
     end
     if(key < current_node.key)
@@ -19,16 +23,19 @@ class BinarySearchTree
         return insert(key, value, current_node.left, depth + 1)
       end
       current_node.left = Node.new(key, value)
-      @num_nodes += 1
-      depth + 1
     else
       if(!current_node.right.nil?) then
         return insert(key, value, current_node.right, depth + 1)
       end
       current_node.right = Node.new(key, value)
-      @num_nodes += 1
-      depth + 1
     end
+
+    @num_nodes += 1
+    depth += 1
+    if(depth+1 > @height)
+      @height = depth+1
+    end
+    depth
   end
 
   def include?(key)
@@ -83,6 +90,21 @@ class BinarySearchTree
     end
 
     node_health_list
+  end
+
+  def leaves(current_node=@root)
+    leaf_count = 0
+
+    if(current_node == nil)
+      leaf_count
+    elsif(current_node.left.nil? && current_node.right.nil?)
+      leaf_count += 1
+    else
+      leaf_count += leaves(current_node.left)
+      leaf_count += leaves(current_node.right)
+    end
+
+    leaf_count
   end
 
   def get_nodes_at_depth(target_depth, current_node=@root, current_depth=0)

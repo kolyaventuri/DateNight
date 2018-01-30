@@ -70,13 +70,12 @@ class BinarySearchTreeClassTest < Minitest::Test
   end
 
   def test_search_tree_leaves_depth
-    skip
     assert_equal 2, @tree.leaves
-    asert_equal 3, @tree.height
+    assert_equal 3, @tree.height
   end
 
   def test_search_tree_deletes_nodes
-    skip
+
     assert_nil @tree.delete(61)
     assert_nil @tree.delete(16)
 
