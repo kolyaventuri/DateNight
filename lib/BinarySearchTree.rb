@@ -12,12 +12,12 @@ class BinarySearchTree
       return 0
     end
     if(key < current_node.key)
-      if(!current_node.left.nil?)
+      if(current_node.left)
         return insert(key, value, current_node.left, depth + 1)
       end
       current_node.left = Node.new(key, value)
     else
-      if(!current_node.right.nil?) then
+      if(current_node.right) then
         return insert(key, value, current_node.right, depth + 1)
       end
       current_node.right = Node.new(key, value)
@@ -181,12 +181,12 @@ class BinarySearchTree
         node_list.push(current_node)
         node_list
       else
-        if(!current_node.left.nil?)
+        if(current_node.left)
           get_nodes_at_depth(target_depth, current_node.left, current_depth + 1).each do | node |
             node_list.push(node)
           end
         end
-        if(!current_node.right.nil?)
+        if(current_node.right)
           get_nodes_at_depth(target_depth, current_node.right, current_depth + 1).each do | node |
             node_list.push(node)
           end
