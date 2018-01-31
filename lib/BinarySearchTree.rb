@@ -165,27 +165,11 @@ class BinarySearchTree
     tracker.length
   end
 
-  def sort(current_node=@root)
-    sorted = []
-    if(current_node.nil?)
-      sorted
-    else
-      if(!current_node.left.nil?)
-        sort(current_node.left).each do |node|
-          sorted.push(node.to_hash)
-        end
-      end
-
-      sorted.push(current_node.to_hash)
-
-      if(!current_node.right.nil?)
-        sort(current_node.right).each do |node|
-          sorted.push(node.to_hash)
-        end
-      end
-
-      sorted
-    end
+  def sort(current_node=@root, sorted=[])
+    sort(current_node.left, sorted) if current_node.left
+    sorted.push(current_node.to_hash)
+    sort(current_node.right, sorted) if current_node.right
+    sorted
   end
 
   def get_nodes_at_depth(target_depth, current_node=@root, current_depth=0)
