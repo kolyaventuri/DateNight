@@ -73,7 +73,7 @@ class BinarySearchTree
       if(current_node.right.nil?)
         current_node.to_hash
       else
-        min(current_node.right)
+        max(current_node.right)
       end
     end
   end
