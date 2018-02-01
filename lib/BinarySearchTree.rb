@@ -44,39 +44,6 @@ class BinarySearchTree
 
   end
 
-  def delete(key, current_node=@root)
-    if(current_node.nil?)
-      nil
-    else
-      if(current_node.key == key)
-        if(current_node.right)
-          temp_node = current_node.left
-          current_node = current_node.right
-
-          pointer_node = current_node
-          until(pointer_node.left.nil?)
-            pointer_node = pointer_node.left
-          end
-          pointer_node.left = temp_node
-          current_node = pointer_node
-          #binding.pry
-          key
-        else
-          temp_node = current_node.left
-          current_node = temp_node
-          #binding.pry
-          key
-        end
-      else
-        if(key < current_node.key)
-          delete(key, current_node.left)
-        else
-          delete(key, current_node.right)
-        end
-      end
-    end
-  end
-
   def include?(key)
     search_result = find_node_by_key(key)
     !search_result[:node].nil?
