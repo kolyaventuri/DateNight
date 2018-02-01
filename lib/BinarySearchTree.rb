@@ -1,5 +1,6 @@
 require './lib/Node'
-require 'pry';
+require 'pry'
+
 class BinarySearchTree
 
   def initialize
@@ -115,9 +116,12 @@ class BinarySearchTree
 
   def load(file_name)
     lines = []
-    File.open(file_name, 'r') do |file|
-      lines = file.read.split("\n")
+
+    if(!File.exist?(file_name))
+      puts "File does not exist!"
+      return
     end
+    lines = File.read(file_name).split("\n")
 
     tracker = []
 

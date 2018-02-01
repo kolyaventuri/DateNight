@@ -73,16 +73,7 @@ class BinarySearchTreeClassTest < Minitest::Test
     assert_equal 2, @tree.leaves
     assert_equal 3, @tree.height
   end
-
-  def test_search_tree_deletes_nodes
-    skip
-    assert_equal 61, @tree.delete(61)
-    assert_equal 16, @tree.delete(16)
-
-    assert_equal false, @tree.include?(61)
-    assert_equal false, @tree.include?(16)
-  end
-
+  
   def test_search_tree_sorts_nodes
     assert_equal @sorted_array, @tree.sort
   end
@@ -91,6 +82,7 @@ class BinarySearchTreeClassTest < Minitest::Test
 
     new_tree = BinarySearchTree.new
     assert_equal 99, new_tree.load('./test/movies.txt')
+    assert_nil new_tree.load('./test/no_exist.txt')
   end
 
 end
